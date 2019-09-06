@@ -11,9 +11,9 @@ module.exports = {
                 // target: 'https://vue-ts-api.herokuapp.com/api',
                 target: 'https://vuets-api.herokuapp.com/api/',
                 ws: true,
-                hangeOrigin: true,
+                changOrigin: true,
                 pathRewrite: {
-                    '^api': ''
+                  '^/api': ''
                 }
             }
         },

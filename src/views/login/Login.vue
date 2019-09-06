@@ -12,15 +12,15 @@
                     </el-input>
                 </el-form-item>
                 <!-- Password -->
-                <el-form-item prop="password">
-                    <el-input type="password" v-model="ruleForm.password" auto-complete="off" placeholder="密碼">
+                <el-form-item prop="pwd">
+                    <el-input type="password" v-model="ruleForm.pwd" auto-complete="off" placeholder="密碼">
                         <i slot="prefix" class="fa fa-lock"></i>
                     </el-input>
                 </el-form-item>
 
                 <!-- 登錄 -->
                 <el-form-item>
-                    <el-button type="primary" style="width:100%" @click.native.prevent="handleSubmit">登錄</el-button>
+                    <el-button type="primary" :loading="isLogin" style="width:100%" @click.native.prevent="handleSubmit">登錄</el-button>
                 </el-form-item>
 
                 <el-form-item>
@@ -42,13 +42,14 @@ import LoginHeader from "./LoginHeader.vue";
     }
 })
 export default class Login extends Vue {
+    @Provide() isLogin:boolean = false;
     @Provide() ruleForm: {
         username: String;
-        password: String;
+        pwd: String;
         autoLogin: boolean
     } = {
         username: "",
-        password: "",
+        pwd: "",
         autoLogin: true
     };
 
@@ -68,7 +69,17 @@ export default class Login extends Vue {
     handleSubmit(): void {
         (this.$refs['ruleForm'] as any).validate((valid:boolean)=> {
             if (valid) {
-                console.log('驗證通過');
+                // console.log('驗證通過');
+                (this as any).$axios.post('/api/users/login', this.ruleForm).then((res: any) => {
+                    this.isLogin = false;
+                    console.log(res.data.token);
+                    localStorage.setItem('tsToken', res.data.token);
+
+                    this.$router.push("/");
+                }).catch(() => {
+                    // console.error('Something wrong.');
+                    this.isLogin = false;
+                });
             }
         });
     }

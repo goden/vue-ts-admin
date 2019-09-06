@@ -1,6 +1,7 @@
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 import axios from "axios";
 import { Message } from "element-ui";
+import router from '@/router';
 
 const service = axios.create({
     timeout: 10000
@@ -10,6 +11,9 @@ const service = axios.create({
 // 請求攔截器
 service.interceptors.request.use(
     (config: AxiosRequestConfig) => {
+        if (localStorage.tsToken) {
+            config.headers.Authorization = localStorage.tsToken;
+        }
         return config;
     },
     (err: any) => {
@@ -28,6 +32,8 @@ service.interceptors.response.use(
             switch (err.response.status) {
                 case 401:
                     errMsg = "Unauthorized";
+                    localStorage.removeItem("tsToken");
+                    router.push('/login');
                     break;
                 case 403:
                     errMsg = "Forbidden";
