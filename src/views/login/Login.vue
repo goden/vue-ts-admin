@@ -72,9 +72,8 @@ export default class Login extends Vue {
                 // console.log('驗證通過');
                 (this as any).$axios.post('/api/users/login', this.ruleForm).then((res: any) => {
                     this.isLogin = false;
-                    console.log(res.data.token);
+                    // console.log(res.data.token);
                     localStorage.setItem('tsToken', res.data.token);
-
                     this.$router.push("/");
                 }).catch(() => {
                     // console.error('Something wrong.');
