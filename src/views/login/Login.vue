@@ -84,6 +84,7 @@ export default class Login extends Vue {
                     // 存儲vuex
                     this.setUser(res.data.token);
 
+                    // 登錄成功，跳轉至主頁
                     this.$router.push("/");
                     
                 }).catch(() => {
