@@ -4,12 +4,22 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator'
+import Vuex, { GetterTree, MutationTree, ActionTree } from "vuex";
+import { Action } from 'vuex-class';
 
-export default {
-  name: 'app',
-  components: {
-  }
+@Component({
+    components: {}
+})
+export default class App extends Vue {
+
+    // 存取用戶信息
+    @Action('setUser') setUser: any;
+
+    created() {
+        this.setUser(localStorage.tsToken);
+    }
 }
 </script>
 

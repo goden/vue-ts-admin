@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { Component, Vue, Provide } from "vue-property-decorator";
+import { State, Getter, Mutation, Action } from "vuex-class";
 import LoginHeader from "./LoginHeader.vue";
 
 @Component({
@@ -42,6 +43,9 @@ import LoginHeader from "./LoginHeader.vue";
     }
 })
 export default class Login extends Vue {
+
+    @Action('setUser') setUser: any;
+
     @Provide() isLogin:boolean = false;
     @Provide() ruleForm: {
         username: String;
@@ -73,8 +77,15 @@ export default class Login extends Vue {
                 (this as any).$axios.post('/api/users/login', this.ruleForm).then((res: any) => {
                     this.isLogin = false;
                     // console.log(res.data.token);
+
+                    // 存儲token
                     localStorage.setItem('tsToken', res.data.token);
+                    
+                    // 存儲vuex
+                    this.setUser(res.data.token);
+
                     this.$router.push("/");
+                    
                 }).catch(() => {
                     // console.error('Something wrong.');
                     this.isLogin = false;
