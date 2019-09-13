@@ -1,15 +1,25 @@
 <template>
     <div class="layout">
         <LayoutHeader />
+        <Content>
+            <Sidebar slot="left"></Sidebar>
+            <router-view slot="content"></router-view>
+        </Content>
     </div>
 </template>
 
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator';
 import LayoutHeader from "@/views/layout/LayoutHeader.vue";
+import Content from "@/views/layout/Content.vue";
+import Sidebar from "@/views/layout/Sidebar.vue";
 
 @Component({
-    components: {LayoutHeader}
+    components: {
+        LayoutHeader,
+        Content,
+        Sidebar
+    }
 })
 export default class Layout extends Vue {
 
