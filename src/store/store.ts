@@ -1,15 +1,21 @@
 import Vue from "vue";
 import Vuex, { GetterTree, MutationTree, ActionTree } from "vuex";
 import jwt_decode from "jwt-decode";
+import { asyncRounterMap } from "@/router";
+
 Vue.use(Vuex);
 
 const state: any = {
-	user: null
+	user: null,
+	routers: asyncRounterMap
 };
 
 const getters: GetterTree<any, any> =  {
 	user(state: any): any {
 		return state.user;
+	},
+	routers(state: any): any {
+		return state.routers;
 	}
 };
 
