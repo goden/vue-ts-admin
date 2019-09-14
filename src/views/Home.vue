@@ -1,5 +1,11 @@
 <template>
-    <div class="home">Home</div>
+    <div class="home">
+        <div class="home-body">
+            <h4 class="title">歡迎來到米修在線後台管理系統</h4>
+            <p class="des">米修在線, 讓每個人都有機會學習程式設計，更有能力學習想要學習的課程!</p>
+            <el-button @click="learn">進來學習</el-button>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
@@ -8,7 +14,15 @@ import { Component, Vue } from "vue-property-decorator";
 @Component({
     components: {}
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+    learn(): void {
+        // 另開新頁
+        window.open(
+            "https://ke.qq.com/course/list/%E7%B1%B3%E6%96%AF%E7%89%B9%E5%90%B4?tuin=c9304a42",
+            "_blank"
+        );
+    }
+}
 </script>
 
 <style lang="scss" scoped>
