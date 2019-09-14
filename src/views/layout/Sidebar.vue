@@ -46,7 +46,7 @@ export default class Sidebar extends Vue {
     @Getter("routers") getRouters: any;
 
     created() {
-        console.log(JSON.stringify(this.getRouters, null, 4));
+        // console.log(JSON.stringify(this.getRouters, null, 4));
     }
 }
 </script>

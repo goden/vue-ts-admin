@@ -41,12 +41,12 @@ export default class LayoutHeader extends Vue {
         }
 
         if (command === 'usercenter') {
-            console.log('用戶中心');
+            // console.log('用戶中心');
         }
     }
 
     created() {
-        console.log(this.getUser);
+        // console.log(this.getUser);
     }
 }
 </script>
