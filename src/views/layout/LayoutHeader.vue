@@ -42,6 +42,7 @@ export default class LayoutHeader extends Vue {
 
         if (command === 'usercenter') {
             // console.log('用戶中心');
+            this.$router.push("/user");
         }
     }
 

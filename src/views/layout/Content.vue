@@ -61,7 +61,7 @@ export default class Content extends Vue {
 
         this.breadCrumbItems = breadCrumbItems;
 
-        console.log(breadCrumbItems);
+        // console.log(breadCrumbItems);
 
     }
 
